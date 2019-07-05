@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="main-content">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1>Product Details</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+      <form [formGroup]="productForm" class="card" (ngSubmit)="editProduct()" (keyup.enter)="editProduct(id)">
+          <input type="hidden" formControlName="id"/>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name"  formControlName="name">
+              <span *ngIf="!productForm.get('name').valid && formErrors.name">
+                  <p class="text-danger" style="font-size:1em; font-weight:400 ">{{ formErrors.name }}</p>
+              </span>
+            </div>
+            <div class="form-group col-md-4">
+              <label >Category</label>
+              <input type="text" class="form-control" placeholder="Category"  formControlName="category">
+              <span *ngIf="!productForm.get('category').valid && formErrors.category">
+                  <p class="text-danger" style="font-size:1em; font-weight:400 ">{{ formErrors.category }}</p>
+              </span>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Price</label>
+                <input type="number" class="form-control" placeholder="Price"  formControlName="price">
+                <span *ngIf="!productForm.get('price').valid && formErrors.price">
+                    <p class="text-danger" style="font-size:1em; font-weight:400 ">{{ formErrors.price }}</p>
+                </span>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                <label style="display:block">Active</label>
+                <bSwitch   formControlName="active"
+                    [switch-off-text]="offText"
+                    [switch-on-text]="onText"
+                    [switch-on-color]="'primary'"
+                    [switch-off-color]="'primary'">                        
+                  </bSwitch>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-3 ">
+                <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid" >Edit</button>
+            </div>
+          </div>        
+        </form>
+  </div>
+    
+    </div>
+<app-footer></app-footer>
